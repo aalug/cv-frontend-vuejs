@@ -8,10 +8,11 @@
 
 <style scoped>
 .layout {
-  background-color: white;
+  background-color: var(--color-navy);
   width: 70%;
   height: 100%;
   margin: 0 auto;
   padding-bottom: 6rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 </style>
