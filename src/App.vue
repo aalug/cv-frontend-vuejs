@@ -1,11 +1,6 @@
 <template>
-  <v-app>
-    <v-main>
-      <HelloWorld />
-    </v-main>
-  </v-app>
-</template>
+  <!-- NavBar -->
 
-<script setup lang="ts">
-  import HelloWorld from '@/components/HelloWorld.vue'
-</script>
+  <router-view/>
+
+</template>
