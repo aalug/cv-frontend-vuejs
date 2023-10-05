@@ -1,6 +1,6 @@
 <template>
-  <div class="container topBotomBordersIn">
-    <a href="#">About</a>
+  <div class="navbar top-bottom-in">
+    <a href="#about">About</a>
     <a href="#">Skills</a>
     <a href="#">Projects</a>
   </div>
@@ -12,24 +12,24 @@
 
 <style scoped>
 
-div.container {
+div.navbar {
   margin: 0 auto;
   padding: 1rem 0 3rem 0;
   text-align: center;
 }
 
-div.container a {
+div.navbar a {
   color: #FFF;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 2rem;
   margin: 0 10px;
-  padding: 10px 2rem;
+  padding: 10px 3rem;
   position: relative;
   z-index: 0;
   cursor: pointer;
 }
 
-div.topBotomBordersIn a:before, div.topBotomBordersIn a:after {
+div.top-bottom-in a:before, div.top-bottom-in a:after {
   position: absolute;
   left: 0;
   width: 100%;
@@ -40,17 +40,17 @@ div.topBotomBordersIn a:before, div.topBotomBordersIn a:after {
   transition: all 0.3s;
 }
 
-div.topBotomBordersIn a:before {
+div.top-bottom-in a:before {
   top: 0;
   transform: translateY(-10px);
 }
 
-div.topBotomBordersIn a:after {
+div.top-bottom-in a:after {
   bottom: 0;
   transform: translateY(10px);
 }
 
-div.topBotomBordersIn a:hover:before, div.topBotomBordersIn a:hover:after {
+div.top-bottom-in a:hover:before, div.top-bottom-in a:hover:after {
   opacity: 1;
   transform: translateY(0px);
 }

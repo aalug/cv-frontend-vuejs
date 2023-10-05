@@ -1,12 +1,13 @@
 <template>
     <div class="main-div">
       <NavBar/>
-      <h1>My Portfolio</h1>
+      <AboutMe/>
     </div>
 </template>
 
 <script lang="ts" setup>
 import NavBar from '@/components/NavBar.vue';
+import AboutMe from '@/components/AboutMe.vue';
 </script>
 
 <style scoped>
