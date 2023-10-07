@@ -1,7 +1,7 @@
 <template>
   <div class="navbar top-bottom-in">
     <a href="#about">About</a>
-    <a href="#">Skills</a>
+    <a href="#my-skills">Skills</a>
     <a href="#">Projects</a>
   </div>
 </template>

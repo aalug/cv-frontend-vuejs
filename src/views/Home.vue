@@ -1,13 +1,15 @@
 <template>
-    <div class="main-div">
-      <NavBar/>
-      <AboutMe/>
-    </div>
+  <div class="main-div">
+    <NavBar/>
+    <AboutMe/>
+    <MySkills/>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import NavBar from '@/components/NavBar.vue';
 import AboutMe from '@/components/AboutMe.vue';
+import MySkills from '@/components/MySkills.vue';
 </script>
 
 <style scoped>
