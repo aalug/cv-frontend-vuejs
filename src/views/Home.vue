@@ -3,6 +3,7 @@
     <NavBar/>
     <AboutMe/>
     <MySkills/>
+    <MyProjects/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import NavBar from '@/components/NavBar.vue';
 import AboutMe from '@/components/AboutMe.vue';
 import MySkills from '@/components/MySkills.vue';
+import MyProjects from "@/components/MyProjects.vue";
 </script>
 
 <style scoped>
