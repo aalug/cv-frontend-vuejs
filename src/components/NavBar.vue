@@ -5,7 +5,7 @@
   >
     <a href="#about">About</a>
     <a href="#my-skills">Skills</a>
-    <a href="#">Projects</a>
+    <a href="#my-projects">Projects</a>
   </div>
 </template>
 
