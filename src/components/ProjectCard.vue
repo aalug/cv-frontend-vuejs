@@ -66,7 +66,7 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
-import {hexToRgba} from '@/utils/het_to_rgba'
+import {hexToRgba} from '@/utils/hex_to_rgba'
 
 const props = defineProps<{
   projectTitle: string,
