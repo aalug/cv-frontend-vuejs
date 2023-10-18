@@ -23,6 +23,13 @@
 </template>
 
 <script setup lang="ts">
+import {onMounted} from 'vue';
+import axios from 'axios';
+
+onMounted(async () => {
+  const {data} = await axios.get('http://localhost:8080/cv-profiles/1')
+  console.log(data)
+})
 
 </script>
 
