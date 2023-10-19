@@ -9,7 +9,7 @@
 <style scoped>
 .layout {
   background-color: var(--color-navy);
-  width: 70%;
+  width: 100rem;
   height: 100%;
   margin: 0 auto;
   padding-bottom: 6rem;

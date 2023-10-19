@@ -2,24 +2,32 @@
   <div id="about">
     <!-- profile picture -->
     <v-img
-        src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+        :src="cvProfile.profilePictureUrl"
+        alt="profile picture"
         class="profile-pic"
     ></v-img>
 
     <!-- about -->
     <v-container>
-      <h3>My name is {{ cvProfile.name }},</h3>
-      <p class="bio">
-        {{ cvProfile.bio }}
-      </p>
+      <h3 class="my-name">My name is {{ cvProfile.name }},</h3>
 
-      <ul class="education">
-        <li
-            v-for="education in cvProfile.educations"
-        >
-            {{ education }}
-        </li>
-      </ul>
+      <div class="d-flex">
+        <!--  Education    -->
+        <ul class="education">
+          <li
+              v-for="education in cvProfile.educations"
+          >
+            <EducationCard :education="education"/>
+          </li>
+        </ul>
+
+        <!--  Bio    -->
+        <div class="d-flex justify-space-around">
+          <p class="bio">
+            {{ cvProfile.bio }}
+          </p>
+        </div>
+      </div>
     </v-container>
 
   </div>
@@ -31,6 +39,7 @@ import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import {CvProfile} from '@/types/CvProfile';
 import {Education} from '@/types/Education';
+import EducationCard from '@/components/EducationCard.vue';
 
 const cvProfile = ref<CvProfile>(new CvProfile());
 
@@ -62,6 +71,7 @@ onMounted(async () => {
   } catch (e) {
     console.error(e)
   }
+  console.log(cvProfile.value.profilePictureUrl)
 })
 
 </script>
@@ -79,9 +89,20 @@ onMounted(async () => {
 
 .bio {
   color: var(--color-orange);
-  width: 80%;
+  width: 70%;
   margin: auto;
   text-align: justify !important;
   font-size: 1.3rem;
+}
+
+.my-name {
+  font-size: 1.8rem;
+  color: var(--color-red);
+  margin-bottom: 2rem;
+}
+
+.education {
+  list-style: none;
+  width: 30%;
 }
 </style>
