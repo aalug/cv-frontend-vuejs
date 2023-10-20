@@ -12,9 +12,10 @@
         >
           <SkillCard
               :skill-name="skill.name"
-              :skill-color="skill.color"
-              :skill-details="skill.details"
+              :skill-color="skill.themeColor"
+              :skill-description="skill.description"
               :skill-image="skill.image"
+              :skill-category="skill.category"
           />
         </v-col>
       </v-row>
@@ -23,40 +24,26 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import SkillCard from '@/components/SkillCard.vue';
+import axios from 'axios';
+import {Skill} from '@/types/Skill'
 
-// without types for now,
-// after finishing the backend
-// it will become clear what data is sent
-const skills = ref(
-    [
-      {
-        name: 'Go',
-        image: 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-        color: 'light-blue',
-        details: 'some details'
-      },
-      {
-        name: 'Python',
-        image: 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-        color: 'blue',
-        details: 'some details'
-      },
-      {
-        name: 'Django',
-        image: 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-        color: 'teal',
-        details: 'some details'
-      },
-      {
-        name: 'SQL',
-        image: 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-        color: 'grey',
-        details: 'some details'
-      },
-    ]
-)
+const skills = ref<Skill[]>([]);
+
+onMounted(async () => {
+  const {data} = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/skills/1`)
+  for (const skill of data) {
+    // @ts-ignore
+    skills.value.push({
+      name: skill.name,
+      description: skill.description,
+      category: skill.category,
+      themeColor: skill.hex_theme_color,
+      image: skill.image
+    })
+  }
+})
 
 </script>
 
