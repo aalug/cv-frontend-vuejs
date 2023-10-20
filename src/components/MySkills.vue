@@ -67,7 +67,7 @@ const skills = ref(
 
 .skills-header {
   color: var(--color-red);
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   border-bottom: solid 2px var(--color-red);
 }
 </style>

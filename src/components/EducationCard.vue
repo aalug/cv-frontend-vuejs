@@ -1,17 +1,17 @@
 <template>
   <div class="edu-card">
-    <div class="ag-courses_box">
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
-          <div class="ag-courses-item_bg"></div>
+    <div class="main-div">
+      <div class="main-div_item">
+        <a href="#" class="main-div_item-link">
+          <div class="main-div_item-bg"></div>
 
-          <div class="ag-courses-item_title">
+          <div class="main-div_item-title">
             <h3>{{ education.degree }}</h3>
           </div>
 
-          <div class="ag-courses-item_date-box">
+          <div class="date-box">
             <strong>{{ education.institution }}</strong><br>
-            <span class="ag-courses-item_date">
+            <span class="item-date">
             {{ formattedStartDate }} - {{ formattedEndDate }}
           </span>
           </div>
@@ -59,7 +59,7 @@ onMounted(formatDate);
   margin: 0 !important;
 }
 
-.ag-courses_box {
+.main-div {
   display: -webkit-box;
   display: -ms-flexbox;
   -webkit-box-align: start;
@@ -70,14 +70,14 @@ onMounted(formatDate);
   padding: 50px 0;
 }
 
-.ag-courses_item {
+.main-div_item {
   -ms-flex-preferred-size: calc(33.33333% - 30px);
   flex-basis: calc(33.33333% - 30px);
   margin: 0 15px 30px;
   overflow: hidden;
 }
 
-.ag-courses-item_link {
+.main-div_item-link {
   display: block;
   padding: 30px 20px;
   background-color: rgba(18, 18, 18, 0.67);
@@ -86,19 +86,19 @@ onMounted(formatDate);
   text-decoration: none;
 }
 
-.ag-courses-item_link:hover,
-.ag-courses-item_link:hover .ag-courses-item_date {
+.main-div_item-link:hover,
+.main-div_item-link:hover .item-date {
   text-decoration: none;
   color: #FFF;
 }
 
-.ag-courses-item_link:hover .ag-courses-item_bg {
+.main-div_item-link:hover .main-div_item-bg {
   -webkit-transform: scale(10);
   -ms-transform: scale(10);
   transform: scale(10);
 }
 
-.ag-courses-item_title {
+.main-div_item-title {
   min-height: 90px;
   overflow: hidden;
   color: #FFF;
@@ -106,20 +106,20 @@ onMounted(formatDate);
   position: relative;
 }
 
-.ag-courses-item_date-box {
+.date-box {
   color: #FFF;
   z-index: 2;
   position: relative;
 }
 
-.ag-courses-item_date {
+.item-date {
   color: #FFF;
   -webkit-transition: color .4s ease-in-out;
   -o-transition: color .4s ease-in-out;
   transition: color .4s ease-in-out;
 }
 
-.ag-courses-item_bg {
+.main-div_item-bg {
   height: 120px;
   width: 120px;
   background-color: var(--color-red);
