@@ -6,42 +6,39 @@
         :key="index"
         class="d-flex justify-center"
     >
-        <ProjectCard
-            :project-title=" project.title"
-            :project-description="project.description"
-            :technologies-used=project.technologiesUsed
-            :projects-color="project.color"
-        />
+      <ProjectCard
+          :project="project"
+      />
     </v-container>
 
   </v-container>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
-import ProjectCard from "@/components/ProjectCard.vue";
+import {ref, onMounted} from 'vue';
+import axios from 'axios';
+import ProjectCard from '@/components/ProjectCard.vue';
+import {Project} from '@/types/Project';
 
-const projects = ref([
-      {
-        title: 'Project 1',
-        description: 'My first project, my first project',
-        technologiesUsed: ['Go', 'Gin', 'Postgres'],
-        color: '#197349',
-      },
-      {
-        title: 'Project 2',
-        description: 'My second project, my second project',
-        technologiesUsed: ['Python', 'Django', 'Postgres'],
-        color: '#de4242',
-      },
-      {
-        title: 'Project 3',
-        description: 'My third project, my third project',
-        technologiesUsed: ['TypeScript', 'Vue.js'],
-        color: '#11a3be',
-      }
-    ]
-)
+const projects = ref<Project[]>([]);
+
+onMounted(async () => {
+  // fetch data from the API
+  const {data} = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/projects/1?page=1&page_size=10`);
+  for (const project of data) {
+    projects.value.push({
+      id: project.id,
+      title: project.title,
+      shortDescription: project.short_description,
+      description: project.description,
+      projectUrl: project.project_url,
+      themeColor: project.hex_theme_color,
+      image: project.image,
+      technologiesUsed: project.technologies_used,
+      cvProfileID: project.cv_profile_id
+    })
+  }
+})
 
 </script>
 
