@@ -8,30 +8,36 @@
                 class="card-front__top"
                 :style="`background:
                         linear-gradient(
-                        to bottom,
-                        ${projectsColor},
+                        to left,
+                        ${project.themeColor},
                         ${secondColor}
                     );`"
             >
               <h2 class="card-front__heading">
-                {{ projectTitle }}
+                {{ project.title }}
               </h2>
-              <p class="card-front__text-price">
-                {{ projectDescription }}
+              <p class="card-front__text-sd">
+                {{ project.shortDescription }}
               </p>
             </div>
 
             <div class="card-front__bottom">
               <p
                   class="card-front__text-view"
-                  :style="`color: ${projectsColor}`"
+                  :style="`color: ${project.themeColor}`"
               >
                 MORE
               </p>
             </div>
           </div>
           <div class="card-back">
-            {{ projectDescription }}
+            <!--  Project image   -->
+            <v-img
+                :src="project.image"
+                alt="project image"
+                cover
+                class="project-image"
+            ></v-img>
           </div>
         </div>
       </div>
@@ -40,24 +46,34 @@
         <div class="inside-page__div">
           <h3
               class="inside-page__heading"
-              :style="`color: ${projectsColor}`"
+              :style="`color: ${project.themeColor}`"
           >
             Technologies used
           </h3>
           <ul class="multi-column-list">
-            <li v-for="technology in technologiesUsed">
+            <li v-for="technology in project.technologiesUsed">
               {{ technology }}
             </li>
           </ul>
 
-          <div class="details-button">
-            <a href="#"
-               :style="`color: ${projectsColor}; border: solid 1px ${projectsColor}`"
-            >
-              Details
-            </a>
-          </div>
+          <hr style="width: 50%;">
 
+          <p class="description">
+            {{ project.description }}
+          </p>
+
+          <!--   GitHub project link button   -->
+          <a
+              id="github-url-btn"
+              :href="project.projectUrl"
+          >
+            GitHub &nbsp;
+            <font-awesome-icon
+                id="gh-logo"
+                icon="fa-brands fa-github"
+                size="xl"
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -66,27 +82,28 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
+import axios from 'axios';
 import {hexToRgba} from '@/utils/hex_to_rgba'
+import {Project} from '@/types/Project';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 const props = defineProps<{
-  projectTitle: string,
-  projectDescription: string,
-  technologiesUsed: string[],
-  projectsColor: string,
+  project: Project
 }>();
 
 const secondColor = ref<string>('');
 
-onMounted(() => {
-  const newColor = hexToRgba(props.projectsColor, 0.9);
+onMounted(async () => {
+  // get new color for the card
+  const newColor = hexToRgba(props.project.themeColor, 0.9);
   if (newColor !== null) {
     secondColor.value = newColor;
   } else {
-    secondColor.value = props.projectsColor;
+    secondColor.value = props.project.themeColor;
   }
 })
-
 </script>
+
 
 <style scoped>
 *,
@@ -99,14 +116,15 @@ onMounted(() => {
 
 .card {
   background-color: rgba(0, 0, 0, .05);
-  height: 18rem;
+  height: 23rem;
   position: relative;
   transition: all 1s ease;
   width: 40rem;
+  margin-bottom: 2rem;
 }
 
 .flip-card {
-  height: 18rem;
+  height: 23rem;
   perspective: 100rem;
   position: absolute;
   right: 0;
@@ -141,7 +159,7 @@ onMounted(() => {
 }
 
 .card-front {
-  height: 18rem;
+  height: 23rem;
   width: 40rem;
 }
 
@@ -150,7 +168,7 @@ onMounted(() => {
   clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
   display: flex;
   flex-direction: column;
-  height: 15rem;
+  height: 21rem;
   justify-content: center;
   padding: .75rem;
 }
@@ -205,21 +223,37 @@ onMounted(() => {
   column-gap: 20px;
 }
 
-.multi-column-list li {
-  margin-bottom: 10px;
-}
-
-.details-button {
+#github-url-btn {
   position: absolute;
-  right: .5rem;
-  bottom: .5rem;
+  right: .3rem;
+  bottom: .3rem;
+  background: #000;
+  color: #FFF;
+  padding: .4rem 1.1rem;
+  transition: all .4s ease;
+  text-decoration: none;
+
 }
 
-.details-button a {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  overflow: hidden;
-  transition: color 0.2s ease-in-out;
+#github-url-btn:hover {
+  color: #000;
+  background: #FFF;
+  outline: solid 1px #000;
+}
+
+.project-image {
+  width: 40rem;
+  height: 23rem;
+}
+
+.card-back p {
+  margin: .7rem 1.4rem 0;
+}
+
+.description {
+  margin-top: 1rem;
+  position: relative;
+  right: 4rem;
+  text-align: justify-all;
 }
 </style>
