@@ -50,13 +50,25 @@
           >
             Technologies used
           </h3>
-          <ul class="multi-column-list">
-            <li v-for="technology in project.technologiesUsed">
-              {{ technology }}
-            </li>
-          </ul>
+          <div
+              class="technology-list"
+              :class="`tl-${project.id}`"
+          >
+            <ul>
+              <li
+                  v-for="(technology, index) in project.technologiesUsed"
+                  :key="index"
+              >
+                <span>{{ technology }}</span>
+              </li>
+            </ul>
+          </div>
 
-          <hr style="width: 50%;">
+          <hr :style="`width: 80%;
+                      background-color: ${project.themeColor};
+                      height: 1px;
+                      border: none;
+                      `">
 
           <p class="description">
             {{ project.description }}
@@ -101,6 +113,16 @@ onMounted(async () => {
   } else {
     secondColor.value = props.project.themeColor;
   }
+
+  const listItems = document.querySelectorAll(`.tl-${props.project.id} ul li`);
+
+// Loop through each list item and set the background property
+  listItems.forEach((listItem) => {
+    const item = listItem as HTMLElement
+    let themeColorT = hexToRgba(props.project.themeColor, 0.4)
+    item.style.setProperty('--themeColorT', themeColorT)
+    item.style.setProperty('--themeColor', props.project.themeColor)
+  });
 })
 </script>
 
@@ -202,7 +224,7 @@ onMounted(async () => {
   height: 100%;
   width: 100%;
   text-align: left;
-  margin-left: 5rem;
+  margin-left: 1rem;
 }
 
 .card:hover {
@@ -218,11 +240,6 @@ onMounted(async () => {
   box-shadow: inset 1rem 0 5rem -2.5rem rgba(0, 0, 0, 0.1);
 }
 
-.multi-column-list {
-  column-count: 3;
-  column-gap: 20px;
-}
-
 #github-url-btn {
   position: absolute;
   right: .3rem;
@@ -232,7 +249,6 @@ onMounted(async () => {
   padding: .4rem 1.1rem;
   transition: all .4s ease;
   text-decoration: none;
-
 }
 
 #github-url-btn:hover {
@@ -252,8 +268,59 @@ onMounted(async () => {
 
 .description {
   margin-top: 1rem;
-  position: relative;
-  right: 4rem;
   text-align: justify-all;
+}
+
+.technology-list {
+  position: relative;
+  color: black;
+}
+
+.technology-list ul {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.technology-list li {
+  width: calc(33.33% - 10px);
+}
+
+.technology-list ul li {
+  position: relative;
+  left: 0;
+  list-style: none;
+  margin: 4px 0;
+  border-left: 2px solid var(--themeColor);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.technology-list ul li:hover {
+  left: 10px;
+  font-weight: bold;
+}
+
+.technology-list ul li span {
+  position: relative;
+  padding: 8px;
+  display: inline-block;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.technology-list ul li:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--themeColorT, #1D5B79);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.3s;
+}
+
+.technology-list ul li:hover:before {
+  transform: scaleX(.9);
 }
 </style>
