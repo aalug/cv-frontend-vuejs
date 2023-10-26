@@ -1,40 +1,38 @@
 <template>
   <div class="edu-card">
-    <div class="main-div">
-      <div class="main-div_item">
-        <a href="#" class="main-div_item-link">
-          <div class="main-div_item-bg"></div>
-
-          <div class="main-div_item-title">
-            <h3>{{ education.degree }}</h3>
-          </div>
-
-          <div class="date-box">
-            <strong>{{ education.institution }}</strong><br>
-            <span class="item-date">
-            {{ formattedStartDate }} - {{ formattedEndDate }}
+    <div
+        v-for="(education, index) in educations"
+        :key="education.id"
+        class="education-details"
+    >
+      <h4>{{ education.degree }}</h4>
+      <br>
+      <strong>{{ education.institution }}</strong><br>
+      <span class="item-date">
+            {{ education.startDate }} - {{ education.endDate }}
           </span>
-          </div>
-        </a>
-      </div>
+      <hr v-if="index < educations.length -1"
+      style="margin-top: 1rem;">
     </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import {onMounted} from 'vue';
 import {Education} from '@/types/Education';
 
 const props = defineProps<{
-  education: Education
+  educations: Education[]
 }>()
 
-const formattedStartDate = ref<string>('');
-const formattedEndDate = ref<string>('');
+const formatDate = (startDateString: string, endDateString: string): string[] => {
+  /**
+   * Format and return dates based on provided strings.
+   */
 
-const formatDate = () => {
-  const sDate = new Date(props.education.startDate);
-  const eDate = new Date(props.education.startDate);
+  const sDate = new Date(startDateString);
+  const eDate = new Date(endDateString);
   const formattedSDate = sDate.toLocaleDateString('en-US', {
     day: '2-digit',
     month: '2-digit',
@@ -46,95 +44,62 @@ const formatDate = () => {
     year: 'numeric'
   });
 
-  formattedStartDate.value = formattedSDate;
-  formattedEndDate.value = formattedEDate;
+  return [
+    formattedSDate,
+    formattedEDate
+  ]
 };
 
-onMounted(formatDate);
+onMounted(() => {
+  for (const education of props.educations) {
+    const dates = formatDate(education.startDate, education.endDate);
+    education.startDate = dates[0];
+    education.endDate = dates[1];
+  }
+});
 </script>
 
 <style scoped>
+
 .edu-card {
-  width: 80rem;
-  margin: 0 !important;
-}
-
-.main-div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding: 50px 0;
-}
-
-.main-div_item {
-  -ms-flex-preferred-size: calc(33.33333% - 30px);
-  flex-basis: calc(33.33333% - 30px);
-  margin: 0 15px 30px;
-  overflow: hidden;
-}
-
-.main-div_item-link {
-  display: block;
-  padding: 30px 20px;
-  background-color: rgba(18, 18, 18, 0.67);
-  overflow: hidden;
+  background: #FFF;
+  color: var(--color-black);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 16rem;
+  height: 20rem;
+  padding: 1.3rem;
   position: relative;
-  text-decoration: none;
+  margin-left: 2.6rem;
+  margin-top: 3rem;
 }
 
-.main-div_item-link:hover,
-.main-div_item-link:hover .item-date {
-  text-decoration: none;
-  color: #FFF;
-}
-
-.main-div_item-link:hover .main-div_item-bg {
-  -webkit-transform: scale(10);
-  -ms-transform: scale(10);
-  transform: scale(10);
-}
-
-.main-div_item-title {
-  min-height: 90px;
-  overflow: hidden;
-  color: #FFF;
-  z-index: 2;
-  position: relative;
-}
-
-.date-box {
-  color: #FFF;
-  z-index: 2;
-  position: relative;
-}
-
-.item-date {
-  color: #FFF;
-  -webkit-transition: color .4s ease-in-out;
-  -o-transition: color .4s ease-in-out;
-  transition: color .4s ease-in-out;
-}
-
-.main-div_item-bg {
-  height: 120px;
-  width: 120px;
-  background-color: var(--color-red);
-
-  z-index: 1;
+.edu-card:before, .edu-card:after {
+  content: "";
+  height: 98%;
   position: absolute;
-  top: -75px;
-  right: -75px;
+  width: 100%;
+}
 
-  border-radius: 30%;
-  transform: rotate(45deg);
+.edu-card:before {
+  background: #fbfbfa;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  left: -5px;
+  top: 4px;
+  transform: rotate(-2.5deg);
+}
 
-  -webkit-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
+.edu-card:after {
+  background: #f6f6f6;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  right: -4px;
+  top: 1px;
+  transform: rotate(1.4deg);
+}
+
+.education-details {
+  position: relative;
+  z-index: 100;
+  margin-bottom: 1rem;
 }
 
 </style>

@@ -22,13 +22,8 @@
           />
 
           <!--  Education    -->
-          <ul class="education">
-            <li
-                v-for="education in cvProfile.educations"
-            >
-              <EducationCard :education="education"/>
-            </li>
-          </ul>
+              <EducationCard :educations="cvProfile.educations"/>
+
         </div>
 
         <!--  Bio    -->
