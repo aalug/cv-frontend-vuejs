@@ -8,7 +8,7 @@
                 class="card-front__top"
                 :style="`background:
                         linear-gradient(
-                        to left,
+                        to bottom,
                         ${project.themeColor},
                         ${secondColor}
                     );`"
@@ -58,8 +58,13 @@
               <li
                   v-for="(technology, index) in project.technologiesUsed"
                   :key="index"
+                  @click="goToTechnologyPage(technology.url)"
               >
-                <span>{{ technology }}</span>
+
+                <span>
+                  {{ technology.name }}
+                </span>
+
               </li>
             </ul>
           </div>
@@ -94,7 +99,7 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
-import axios from 'axios';
+import {useRouter} from 'vue-router'
 import {hexToRgba} from '@/utils/hex_to_rgba'
 import {Project} from '@/types/Project';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
@@ -103,11 +108,13 @@ const props = defineProps<{
   project: Project
 }>();
 
+const router = useRouter()
+
 const secondColor = ref<string>('');
 
 onMounted(async () => {
   // get new color for the card
-  const newColor = hexToRgba(props.project.themeColor, 0.9);
+  const newColor = hexToRgba(props.project.themeColor, 0.95);
   if (newColor !== null) {
     secondColor.value = newColor;
   } else {
@@ -124,6 +131,10 @@ onMounted(async () => {
     item.style.setProperty('--themeColor', props.project.themeColor)
   });
 })
+
+const goToTechnologyPage = (url: string) => {
+  window.location.href = url;
+}
 </script>
 
 

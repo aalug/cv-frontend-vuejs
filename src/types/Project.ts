@@ -1,3 +1,5 @@
+import {Technology} from '@/types/Technology';
+
 export interface Project {
     id: number;
     title: string;
@@ -6,7 +8,7 @@ export interface Project {
     projectUrl: string;
     themeColor: string;
     image: string;
-    technologiesUsed: string[];
+    technologiesUsed: Technology[];
     cvProfileID: number;
 }
 
