@@ -12,18 +12,28 @@
       <h3 class="my-name">My name is {{ cvProfile.name }},</h3>
 
       <div class="d-flex">
-        <!--  Education    -->
-        <ul class="education">
-          <li
-              v-for="education in cvProfile.educations"
-          >
-            <EducationCard :education="education"/>
-          </li>
-        </ul>
+        <div style="width: 30%">
+          <!--  Contact   -->
+          <ContactMe
+              :address="cvProfile.address"
+              :email="cvProfile.email"
+              :git-hub-url="cvProfile.githubUrl"
+              :phone-number="cvProfile.phone"
+          />
+
+          <!--  Education    -->
+          <ul class="education">
+            <li
+                v-for="education in cvProfile.educations"
+            >
+              <EducationCard :education="education"/>
+            </li>
+          </ul>
+        </div>
 
         <!--  Bio    -->
-        <div class="d-flex justify-space-around">
-          <p class="bio">
+        <div class="bio">
+          <p>
             {{ cvProfile.bio }}
           </p>
         </div>
@@ -40,6 +50,7 @@ import axios from 'axios';
 import {CvProfile} from '@/types/CvProfile';
 import {Education} from '@/types/Education';
 import EducationCard from '@/components/EducationCard.vue';
+import ContactMe from "@/components/ContactMe.vue";
 
 const cvProfile = ref<CvProfile>(new CvProfile());
 
@@ -90,9 +101,10 @@ onMounted(async () => {
 .bio {
   color: var(--color-orange);
   width: 70%;
-  margin: auto;
+  margin: auto 4rem;
   text-align: justify !important;
   font-size: 1.3rem;
+  line-height: 170%;
 }
 
 .my-name {
