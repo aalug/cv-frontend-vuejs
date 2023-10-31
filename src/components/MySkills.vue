@@ -11,12 +11,12 @@
             sm="6"
         >
           <SkillCard
+              :skill-id="skill.id"
               :skill-name="skill.name"
               :skill-color="skill.themeColor"
               :skill-description="skill.description"
               :skill-image="skill.image"
-              :skill-category="skill.category"
-          />
+              :skill-category="skill.category"/>
         </v-col>
       </v-row>
     </v-container>
@@ -36,6 +36,7 @@ onMounted(async () => {
   for (const skill of data) {
     // @ts-ignore
     skills.value.push({
+      id: skill.id,
       name: skill.name,
       description: skill.description,
       category: skill.category,

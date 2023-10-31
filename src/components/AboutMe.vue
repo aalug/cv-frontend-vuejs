@@ -77,7 +77,6 @@ onMounted(async () => {
   } catch (e) {
     console.error(e)
   }
-  console.log(cvProfile.value.profilePictureUrl)
 })
 
 </script>
