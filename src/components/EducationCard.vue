@@ -9,54 +9,44 @@
       <br>
       <strong>{{ education.institution }}</strong><br>
       <span class="item-date">
-            {{ education.startDate }} - {{ education.endDate }}
+            {{ formatDate(education.startDate) }} - {{ formatDate(education.endDate) }}
           </span>
       <hr v-if="index < educations.length -1"
-      style="margin-top: 1rem;">
+          style="margin-top: 1rem;">
     </div>
 
   </div>
 </template>
 
 <script setup lang="ts">
-import {onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {Education} from '@/types/Education';
 
 const props = defineProps<{
   educations: Education[]
 }>()
 
-const formatDate = (startDateString: string, endDateString: string): string[] => {
+const dates = ref(new Map<number, string>());
+
+const formatDate = (dateString: string): string => {
   /**
    * Format and return dates based on provided strings.
    */
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: 'UTC'
+    })
 
-  const sDate = new Date(startDateString);
-  const eDate = new Date(endDateString);
-  const formattedSDate = sDate.toLocaleDateString('en-US', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-  const formattedEDate = eDate.toLocaleDateString('en-US', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-
-  return [
-    formattedSDate,
-    formattedEDate
-  ]
+  } catch (error) {
+    console.error('Error formatting dates:', error);
+    return 'Invalid Date'
+  }
 };
 
-onMounted(() => {
-  for (const education of props.educations) {
-    const dates = formatDate(education.startDate, education.endDate);
-    education.startDate = dates[0];
-    education.endDate = dates[1];
-  }
-});
 </script>
 
 <style scoped>
@@ -66,7 +56,6 @@ onMounted(() => {
   color: var(--color-black);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 16rem;
-  height: 20rem;
   padding: 1.3rem;
   position: relative;
   margin-left: 2.6rem;
