@@ -2,7 +2,7 @@
   <div>
     <v-container id="my-skills">
       <h1 class="skills-header">My Skills</h1>
-      <v-row>
+      <v-row class="skills-list">
         <v-col
             v-for="(skill, index) in skills"
             :key="index"
@@ -49,13 +49,13 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-#my-skills {
-  margin-top: 8rem;
+.skills-list {
+  margin: 7rem 0 0 4rem;
 }
 
 .skills-header {
   color: var(--color-red);
-  margin-bottom: 5rem;
+  margin-top: 10rem;
   border-bottom: solid 2px var(--color-red);
 }
 </style>
