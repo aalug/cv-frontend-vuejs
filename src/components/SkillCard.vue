@@ -24,8 +24,7 @@
 <script setup lang="ts">
 import {ref, onMounted} from 'vue';
 import {useRouter} from 'vue-router';
-import {hexToRgba} from '@/utils/hex_to_rgba'
-import {getContrastingColor} from "@/utils/get_contrasting_color";
+import {hexToRgba} from '@/utils/hex_to_rgba';
 
 const router = useRouter();
 
