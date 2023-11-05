@@ -93,7 +93,7 @@ onMounted(async () => {
 }
 
 .bio {
-  color: var(--color-orange);
+  color: var(--color-text-color);
   width: 70%;
   margin: auto 4rem;
   text-align: justify !important;
