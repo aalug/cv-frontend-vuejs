@@ -5,6 +5,7 @@
         :src="cvProfile.profilePictureUrl"
         alt="profile picture"
         class="profile-pic"
+        id="profile-pic"
     ></v-img>
 
     <!-- about -->
@@ -22,7 +23,7 @@
           />
 
           <!--  Education    -->
-              <EducationCard :educations="cvProfile.educations"/>
+          <EducationCard :educations="cvProfile.educations"/>
 
         </div>
 
@@ -87,13 +88,69 @@ onMounted(async () => {
 }
 
 .profile-pic {
-  border-radius: 50%;
   width: 22rem;
+  height: 22rem;
+  background: #fbfbf8;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
   margin: 2rem auto 1rem;
+  border-radius: 100%;
+  transition: transform 1s;
+  position: relative;
+  animation: spin .8s linear 3,
+  moveRightToLeft 5.2s linear 1,
+  reverseSpin 2.83s linear 2.4s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverseSpin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes moveRightToLeft {
+  0% {
+    left: -100%;
+  }
+  45% {
+    left: calc(100% - 37rem);
+  }
+  55% {
+    left: 50%;
+  }
+  65% {
+    left: 37%;
+  }
+  75% {
+    left: 26%;
+  }
+  83% {
+    left: 18%;
+  }
+  90% {
+    left: 11%;
+  }
+  95% {
+    left: 5%;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 .bio {
-  color: var(--color-orange);
+  color: var(--color-text-color);
   width: 70%;
   margin: auto 4rem;
   text-align: justify !important;
