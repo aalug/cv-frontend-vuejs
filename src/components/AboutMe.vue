@@ -46,11 +46,19 @@ import axios from 'axios';
 import {CvProfile} from '@/types/CvProfile';
 import {Education} from '@/types/Education';
 import EducationCard from '@/components/EducationCard.vue';
-import ContactMe from "@/components/ContactMe.vue";
+import ContactMe from '@/components/ContactMe.vue';
+import GolfClub from '@/components/GolfClub.vue';
+import LedLight from "@/components/LedLight.vue";
 
 const cvProfile = ref<CvProfile>(new CvProfile());
 
 onMounted(async () => {
+  let elem = document.getElementById("profile-pic");
+  let bodyWidth = document.body.clientWidth;
+  let elemWidth = elem.offsetWidth;
+
+  elem.style.setProperty('--pic-position', `${(bodyWidth - 280) / 2}px`);
+
   const url = `${import.meta.env.VITE_API_BASE_URL}/cv-profiles/1`
   try {
     const {data} = await axios.get(url)
@@ -88,17 +96,17 @@ onMounted(async () => {
 }
 
 .profile-pic {
-  width: 22rem;
-  height: 22rem;
+  width: 280px;
+  height: 280px;
   background: #fbfbf8;
   box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
   margin: 2rem auto 1rem;
   border-radius: 100%;
   transition: transform 1s;
   position: relative;
-  animation: spin .8s linear 3,
-  moveRightToLeft 5.2s linear 1,
-  reverseSpin 2.83s linear 2.4s;
+  animation: movePic 4.8s linear 1,
+  spin .8s linear 3,
+  reverseSpin 2.3s ease-out 2.4s;
 }
 
 @keyframes spin {
@@ -119,30 +127,14 @@ onMounted(async () => {
   }
 }
 
-@keyframes moveRightToLeft {
+@keyframes movePic {
   0% {
     left: -100%;
+    animation-timing-function: linear;
   }
-  45% {
-    left: calc(100% - 37rem);
-  }
-  55% {
-    left: 50%;
-  }
-  65% {
-    left: 37%;
-  }
-  75% {
-    left: 26%;
-  }
-  83% {
-    left: 18%;
-  }
-  90% {
-    left: 11%;
-  }
-  95% {
-    left: 5%;
+  50% {
+    left: var(--pic-position);
+    animation-timing-function: ease-out;;
   }
   100% {
     left: 0;
