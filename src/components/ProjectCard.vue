@@ -149,21 +149,28 @@ const goToTechnologyPage = (url: string) => {
 
 .card {
   background-color: rgba(0, 0, 0, .05);
-  height: 23rem;
+  height: 26rem;
   position: relative;
   transition: all 1s ease;
-  width: 40rem;
+  width: 44rem;
   margin-bottom: 2rem;
 }
 
+.card:hover {
+  transform: scale(1.2);
+  margin: 6rem auto;
+  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
+  width: 88rem;
+}
+
 .flip-card {
-  height: 23rem;
+  height: 26rem;
   perspective: 100rem;
   position: absolute;
   right: 0;
   transition: all 1s ease;
   visibility: hidden;
-  width: 40rem;
+  width: 44rem;
   z-index: 100;
 }
 
@@ -192,8 +199,8 @@ const goToTechnologyPage = (url: string) => {
 }
 
 .card-front {
-  height: 23rem;
-  width: 40rem;
+  height: 26rem;
+  width: 44rem;
 }
 
 .card-front__top {
@@ -201,7 +208,7 @@ const goToTechnologyPage = (url: string) => {
   clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
   display: flex;
   flex-direction: column;
-  height: 21rem;
+  height: 24rem;
   justify-content: center;
   padding: .75rem;
 }
@@ -225,7 +232,7 @@ const goToTechnologyPage = (url: string) => {
   position: absolute;
   right: 0;
   transition: all 1s ease;
-  width: 40rem;
+  width: 44rem;
   z-index: 1;
 }
 
@@ -234,13 +241,10 @@ const goToTechnologyPage = (url: string) => {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  text-align: left;
-  margin-left: 1rem;
-}
-
-.card:hover {
-  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
-  width: 80rem;
+  text-align: justify;
+  margin-top: .5rem;
+  margin-left: 1.5rem;
+  padding-right: 3rem;
 }
 
 .card:hover .flip-card__div {
@@ -269,8 +273,8 @@ const goToTechnologyPage = (url: string) => {
 }
 
 .project-image {
-  width: 40rem;
-  height: 23rem;
+  width: 44rem;
+  height: 26rem;
 }
 
 .card-back p {
@@ -278,7 +282,7 @@ const goToTechnologyPage = (url: string) => {
 }
 
 .description {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: justify-all;
 }
 
@@ -334,4 +338,10 @@ const goToTechnologyPage = (url: string) => {
 .technology-list ul li:hover:before {
   transform: scaleX(.9);
 }
+
+.card-front__text-sd {
+  text-align: justify;
+  margin: 1rem 1.6rem;
+}
+
 </style>
