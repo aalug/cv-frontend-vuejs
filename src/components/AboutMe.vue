@@ -55,9 +55,10 @@ const cvProfile = ref<CvProfile>(new CvProfile());
 onMounted(async () => {
   let elem = document.getElementById("profile-pic");
   let bodyWidth = document.body.clientWidth;
-  let elemWidth = elem.offsetWidth;
-
-  elem.style.setProperty('--pic-position', `${(bodyWidth - 280) / 2}px`);
+  if (elem) {
+    let elemWidth = elem.offsetWidth;
+    elem.style.setProperty('--pic-position', `${(bodyWidth - 280) / 2}px`);
+  }
 
   const url = `${process.env.VITE_API_BASE_URL}/cv-profiles/1`
   try {
