@@ -30,9 +30,13 @@ import axios from 'axios';
 import {Skill} from '@/types/Skill'
 
 const skills = ref<Skill[]>([]);
+const centerLastRow = ref<boolean>(false);
 
 onMounted(async () => {
   const {data} = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/skills/1`)
+
+  data.sort((a: any, b: any) => b.importance - a.importance);
+
   for (const skill of data) {
     // @ts-ignore
     skills.value.push({
@@ -41,7 +45,8 @@ onMounted(async () => {
       description: skill.description,
       category: skill.category,
       themeColor: skill.hex_theme_color,
-      image: skill.image
+      image: skill.image,
+      importance: skill.importance
     })
   }
 })
