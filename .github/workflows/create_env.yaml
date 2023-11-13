@@ -1,0 +1,19 @@
+name: Create envfile
+
+on: [ push ]
+
+jobs:
+
+  create-envfile:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v2.0
+      with:
+        envkey_VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        directory: .
+        file_name: .env
+        fail_on_empty: true
+        sort_keys: false
