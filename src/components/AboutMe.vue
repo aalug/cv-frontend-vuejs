@@ -60,7 +60,7 @@ onMounted(async () => {
     elem.style.setProperty('--pic-position', `${(bodyWidth - 280) / 2}px`);
   }
 
-  const url = `${process.env.VITE_API_BASE_URL}/cv-profiles/1`
+  const url = `${import.meta.env.VITE_API_BASE_URL}/cv-profiles/1`
   try {
     const {data} = await axios.get(url)
     cvProfile.value.cvProfileID = data.cv_profile_id;
