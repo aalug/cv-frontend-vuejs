@@ -31,16 +31,23 @@ const dates = ref(new Map<number, string>());
 const formatDate = (dateString: string): string => {
   /**
    * Format and return dates based on provided strings.
+   *  Validate whether the specified date lies in the
+   *  future; if it does, rather than displaying the
+   *  formatted date, return the string "current".
    */
   try {
     const date = new Date(dateString);
+    const currentDate = new Date();
+
+    if (date > currentDate) {
+      return 'current';
+    }
+
     return date.toLocaleDateString('en-US', {
-      day: '2-digit',
       month: '2-digit',
       year: 'numeric',
       timeZone: 'UTC'
     })
-
   } catch (error) {
     console.error('Error formatting dates:', error);
     return 'Invalid Date'
