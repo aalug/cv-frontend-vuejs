@@ -5,4 +5,5 @@ export interface Skill {
     category: string;
     themeColor: string;
     image: string;
+    importance: number;
 }

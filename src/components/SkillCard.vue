@@ -79,14 +79,14 @@ const goTOProjectsBySkill = (skillName: string) => {
   max-width: 100%;
   max-height: 100%;
   width: 25rem;
-  height: 14rem;
+  height: 18rem;
+  background-color: #FFF;
 }
 
 .card-image > img {
-  width: 25rem;
-  height: 14rem;
-  object-fit: cover;
-  object-position: bottom;
+  width: 16rem;
+  height: 16rem;
+  margin-top: 1rem;
 }
 
 .card-text {
@@ -162,12 +162,12 @@ const goTOProjectsBySkill = (skillName: string) => {
 }
 
 .explore-link:hover::before {
-  animation: slick-hover-2 2.2s 0.3s linear infinite;
+  animation: move-on-hover-2 2.2s 0.3s linear infinite;
   transform: translateY(-.6rem) translateX(-.6rem);
 }
 
 .explore-link:hover::after {
-  animation: slick-hover 2.2s 0.3s linear infinite reverse;
+  animation: move-on-hover 2.2s 0.3s linear infinite reverse;
   transform: translateY(.6rem) translateX(.6rem);
 }
 
@@ -183,7 +183,7 @@ const goTOProjectsBySkill = (skillName: string) => {
   }
 }
 
-@keyframes slick-hover {
+@keyframes move-on-hover {
   0.00% {
     transform: translateY(.6rem) translateX(.6rem);
   }
@@ -207,7 +207,7 @@ const goTOProjectsBySkill = (skillName: string) => {
   }
 }
 
-@keyframes slick-hover-2 {
+@keyframes move-on-hover-2 {
   0.00% {
     transform: translateY(-.6rem) translateX(-.6rem);
   }
