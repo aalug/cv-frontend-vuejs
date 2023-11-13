@@ -72,6 +72,13 @@ onMounted(async () => {
     cvProfile.value.githubUrl = data.github_url;
     cvProfile.value.profilePictureUrl = data.profile_picture;
 
+    // Sort education array by start date in descending order (latest first)
+    data.education.sort((a: any, b: any) => {
+      const date1 = new Date(a.start_date);
+      const date2 = new Date(b.start_date);
+      return date2.getTime() - date1.getTime();
+    });
+
     for (const eduData of data.education) {
       const education: Education = {
         id: eduData.id,
