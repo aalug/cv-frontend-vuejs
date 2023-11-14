@@ -8,10 +8,13 @@
 </template>
 
 <script lang="ts" setup>
+import {defineAsyncComponent} from 'vue';
 import NavBar from '@/components/NavBar.vue';
 import AboutMe from '@/components/AboutMe.vue';
-import MySkills from '@/components/MySkills.vue';
-import MyProjects from "@/components/MyProjects.vue";
+
+const MySkills = defineAsyncComponent(() => import('@/components/MySkills.vue'));
+const MyProjects = defineAsyncComponent(() => import('@/components/MyProjects.vue'));
+
 </script>
 
 <style scoped>
