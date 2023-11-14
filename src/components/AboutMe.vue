@@ -221,8 +221,8 @@ onMounted(async () => {
 
 .bio {
   color: var(--color-text-color);
-  width: 60%;
-  margin: auto 4rem;
+  width: 50%;
+  margin: 5rem 4rem;
   text-align: justify !important;
   font-size: 1.4rem;
   line-height: 180%;
