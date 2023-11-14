@@ -2,7 +2,7 @@
   <div>
     <v-container id="my-skills">
       <h1 class="skills-header">My Skills</h1>
-      <v-row class="skills-list">
+      <v-row class="skills-list d-flex justify-center">
         <v-col
             v-for="(skill, index) in skills"
             :key="index"
