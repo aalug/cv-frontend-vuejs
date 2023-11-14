@@ -29,7 +29,76 @@
 
         <!--  Bio    -->
         <div class="bio">
-          <p>
+
+          <!--  Loading  -->
+          <ContentLoader
+              v-if="loading" 
+              viewBox="0 0 300 100"
+              secondaryColor="var(--color-text-color)"
+              style="opacity: .65;"
+          >
+            <rect x="0" y="0" rx="1" ry="1" width="50" height="7"/>
+            <rect x="55" y="0" rx="1" ry="1" width="20" height="7"/>
+            <rect x="80" y="0" rx="1" ry="1" width="80" height="7"/>
+            <rect x="165" y="0" rx="1" ry="1" width="25" height="7"/>
+            <rect x="195" y="0" rx="1" ry="1" width="40" height="7"/>
+            <rect x="240" y="0" rx="1" ry="1" width="30" height="7"/>
+
+            <rect x="0" y="13" rx="1" ry="1" width="60" height="7"/>
+            <rect x="65" y="13" rx="1" ry="1" width="30" height="7"/>
+            <rect x="105" y="13" rx="1" ry="1" width="50" height="7"/>
+            <rect x="160" y="13" rx="1" ry="1" width="35" height="7"/>
+            <rect x="200" y="13" rx="1" ry="1" width="20" height="7"/>
+            <rect x="230" y="13" rx="1" ry="1" width="40" height="7"/>
+
+            <rect x="0" y="26" rx="1" ry="1" width="15" height="7"/>
+            <rect x="20" y="26" rx="1" ry="1" width="20" height="7"/>
+            <rect x="25" y="26" rx="1" ry="1" width="45" height="7"/>
+            <rect x="75" y="26" rx="1" ry="1" width="60" height="7"/>
+            <rect x="140" y="26" rx="1" ry="1" width="40" height="7"/>
+            <rect x="185" y="26" rx="1" ry="1" width="15" height="7"/>
+            <rect x="205" y="26" rx="1" ry="1" width="65" height="7"/>
+
+            <rect x="0" y="39" rx="1" ry="1" width="50" height="7"/>
+            <rect x="55" y="39" rx="1" ry="1" width="20" height="7"/>
+            <rect x="80" y="39" rx="1" ry="1" width="80" height="7"/>
+            <rect x="165" y="39" rx="1" ry="1" width="25" height="7"/>
+            <rect x="195" y="39" rx="1" ry="1" width="40" height="7"/>
+            <rect x="240" y="39" rx="1" ry="1" width="30" height="7"/>
+
+            <rect x="0" y="52" rx="1" ry="1" width="60" height="7"/>
+            <rect x="65" y="52" rx="1" ry="1" width="30" height="7"/>
+            <rect x="105" y="52" rx="1" ry="1" width="50" height="7"/>
+            <rect x="160" y="52" rx="1" ry="1" width="35" height="7"/>
+            <rect x="200" y="52" rx="1" ry="1" width="20" height="7"/>
+            <rect x="230" y="52" rx="1" ry="1" width="40" height="7"/>
+
+            <rect x="0" y="65" rx="1" ry="1" width="15" height="7"/>
+            <rect x="20" y="65" rx="1" ry="1" width="20" height="7"/>
+            <rect x="25" y="65" rx="1" ry="1" width="45" height="7"/>
+            <rect x="75" y="65" rx="1" ry="1" width="60" height="7"/>
+            <rect x="140" y="65" rx="1" ry="1" width="40" height="7"/>
+            <rect x="185" y="65" rx="1" ry="1" width="15" height="7"/>
+            <rect x="205" y="65" rx="1" ry="1" width="65" height="7"/>
+
+            <rect x="0" y="78" rx="1" ry="1" width="50" height="7"/>
+            <rect x="55" y="78" rx="1" ry="1" width="20" height="7"/>
+            <rect x="80" y="78" rx="1" ry="1" width="80" height="7"/>
+            <rect x="165" y="78" rx="1" ry="1" width="25" height="7"/>
+            <rect x="195" y="78" rx="1" ry="1" width="40" height="7"/>
+            <rect x="240" y="78" rx="1" ry="1" width="30" height="7"/>
+
+            <rect x="0" y="91" rx="1" ry="1" width="15" height="7"/>
+            <rect x="20" y="91" rx="1" ry="1" width="20" height="7"/>
+            <rect x="25" y="91" rx="1" ry="1" width="45" height="7"/>
+            <rect x="75" y="91" rx="1" ry="1" width="60" height="7"/>
+            <rect x="140" y="91" rx="1" ry="1" width="40" height="7"/>
+            <rect x="185" y="91" rx="1" ry="1" width="15" height="7"/>
+            <rect x="205" y="91" rx="1" ry="1" width="65" height="7"/>
+
+          </ContentLoader>
+
+          <p v-else>
             {{ cvProfile.bio }}
           </p>
         </div>
@@ -44,12 +113,12 @@
 import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import {CvProfile} from '@/types/CvProfile';
+import {ContentLoader} from 'vue-content-loader';
 import {Education} from '@/types/Education';
 import EducationCard from '@/components/EducationCard.vue';
 import ContactMe from '@/components/ContactMe.vue';
-import GolfClub from '@/components/GolfClub.vue';
-import LedLight from "@/components/LedLight.vue";
 
+const loading = ref<boolean>(false);
 const cvProfile = ref<CvProfile>(new CvProfile());
 
 onMounted(async () => {
@@ -60,6 +129,7 @@ onMounted(async () => {
     elem.style.setProperty('--pic-position', `${(bodyWidth - 280) / 2}px`);
   }
 
+  loading.value = true;
   try {
     const {data} = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/cv-profiles/1`)
     cvProfile.value.cvProfileID = data.cv_profile_id;
@@ -93,6 +163,7 @@ onMounted(async () => {
   } catch (e) {
     console.error(e)
   }
+  loading.value = false;
 })
 
 </script>
@@ -150,15 +221,15 @@ onMounted(async () => {
 
 .bio {
   color: var(--color-text-color);
-  width: 70%;
+  width: 60%;
   margin: auto 4rem;
   text-align: justify !important;
-  font-size: 1.3rem;
-  line-height: 170%;
+  font-size: 1.4rem;
+  line-height: 180%;
 }
 
 .my-name {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--color-red);
   margin-bottom: 2rem;
 }
