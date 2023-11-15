@@ -48,9 +48,9 @@ onMounted(async () => {
 }
 
 .projects-header {
-  color: var(--color-red);
+  color: var(--color-orange-main);
   margin-bottom: 2rem;
-  border-bottom: solid 2px var(--color-red);
+  border-bottom: solid 2px var(--color-orange-main);
 }
 
 </style>

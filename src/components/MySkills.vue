@@ -59,8 +59,8 @@ onMounted(async () => {
 }
 
 .skills-header {
-  color: var(--color-red);
+  color: var(--color-orange-main);
   margin-top: 10rem;
-  border-bottom: solid 2px var(--color-red);
+  border-bottom: solid 2px var(--color-orange-main);
 }
 </style>
