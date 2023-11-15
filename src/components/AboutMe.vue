@@ -221,7 +221,7 @@ onMounted(async () => {
 
 .bio {
   color: var(--color-text-color);
-  width: 50%;
+  width: 70%;
   margin: 5rem 4rem;
   text-align: justify !important;
   font-size: 1.4rem;
@@ -229,13 +229,9 @@ onMounted(async () => {
 }
 
 .my-name {
-  font-size: 2rem;
-  color: var(--color-red);
+  font-size: 2.5rem;
+  color: var(--color-orange-main);
+  margin-top: 1rem;
   margin-bottom: 2rem;
-}
-
-.education {
-  list-style: none;
-  width: 30%;
 }
 </style>

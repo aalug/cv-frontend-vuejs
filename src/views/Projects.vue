@@ -55,8 +55,8 @@ onMounted(async () => {
 
 <style scoped>
 .projects-skill-header {
-  color: var(--color-red);
-  border-bottom: solid 2px var(--color-red);
+  color: var(--color-orange-main);
+  border-bottom: solid 2px var(--color-orange-main);
   display: flex;
   justify-content: center;
   margin: 10rem auto 5rem;
