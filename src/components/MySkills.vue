@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container id="my-skills">
-      <h1 class="skills-header">My Skills</h1>
+      <h2 class="skills-header">My Skills</h2>
       <v-row class="skills-list d-flex justify-center">
         <v-col
             v-for="(skill, index) in skills"
@@ -62,5 +62,6 @@ onMounted(async () => {
   color: var(--color-orange-main);
   margin-top: 10rem;
   border-bottom: solid 2px var(--color-orange-main);
+  font-size: 2.4rem;
 }
 </style>
