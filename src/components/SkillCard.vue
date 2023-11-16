@@ -4,10 +4,11 @@
       <img
           :src="skillImage"
           alt="Skill picture"
+          :title="`Skill - ${skillName}`"
       >
     </div>
     <div class="card-text">
-      <h2 class="card-title">{{ skillName }}</h2>
+      <h3 class="card-title">{{ skillName }}</h3>
       <p class="card-body">{{ skillDescription }}</p>
     </div>
 
