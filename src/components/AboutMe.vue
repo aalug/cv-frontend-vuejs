@@ -29,76 +29,7 @@
 
         <!--  Bio    -->
         <div class="bio">
-
-          <!--  Loading  -->
-          <ContentLoader
-              v-if="loading" 
-              viewBox="0 0 300 100"
-              secondaryColor="var(--color-text-color)"
-              style="opacity: .65;"
-          >
-            <rect x="0" y="0" rx="1" ry="1" width="50" height="7"/>
-            <rect x="55" y="0" rx="1" ry="1" width="20" height="7"/>
-            <rect x="80" y="0" rx="1" ry="1" width="80" height="7"/>
-            <rect x="165" y="0" rx="1" ry="1" width="25" height="7"/>
-            <rect x="195" y="0" rx="1" ry="1" width="40" height="7"/>
-            <rect x="240" y="0" rx="1" ry="1" width="30" height="7"/>
-
-            <rect x="0" y="13" rx="1" ry="1" width="60" height="7"/>
-            <rect x="65" y="13" rx="1" ry="1" width="30" height="7"/>
-            <rect x="105" y="13" rx="1" ry="1" width="50" height="7"/>
-            <rect x="160" y="13" rx="1" ry="1" width="35" height="7"/>
-            <rect x="200" y="13" rx="1" ry="1" width="20" height="7"/>
-            <rect x="230" y="13" rx="1" ry="1" width="40" height="7"/>
-
-            <rect x="0" y="26" rx="1" ry="1" width="15" height="7"/>
-            <rect x="20" y="26" rx="1" ry="1" width="20" height="7"/>
-            <rect x="25" y="26" rx="1" ry="1" width="45" height="7"/>
-            <rect x="75" y="26" rx="1" ry="1" width="60" height="7"/>
-            <rect x="140" y="26" rx="1" ry="1" width="40" height="7"/>
-            <rect x="185" y="26" rx="1" ry="1" width="15" height="7"/>
-            <rect x="205" y="26" rx="1" ry="1" width="65" height="7"/>
-
-            <rect x="0" y="39" rx="1" ry="1" width="50" height="7"/>
-            <rect x="55" y="39" rx="1" ry="1" width="20" height="7"/>
-            <rect x="80" y="39" rx="1" ry="1" width="80" height="7"/>
-            <rect x="165" y="39" rx="1" ry="1" width="25" height="7"/>
-            <rect x="195" y="39" rx="1" ry="1" width="40" height="7"/>
-            <rect x="240" y="39" rx="1" ry="1" width="30" height="7"/>
-
-            <rect x="0" y="52" rx="1" ry="1" width="60" height="7"/>
-            <rect x="65" y="52" rx="1" ry="1" width="30" height="7"/>
-            <rect x="105" y="52" rx="1" ry="1" width="50" height="7"/>
-            <rect x="160" y="52" rx="1" ry="1" width="35" height="7"/>
-            <rect x="200" y="52" rx="1" ry="1" width="20" height="7"/>
-            <rect x="230" y="52" rx="1" ry="1" width="40" height="7"/>
-
-            <rect x="0" y="65" rx="1" ry="1" width="15" height="7"/>
-            <rect x="20" y="65" rx="1" ry="1" width="20" height="7"/>
-            <rect x="25" y="65" rx="1" ry="1" width="45" height="7"/>
-            <rect x="75" y="65" rx="1" ry="1" width="60" height="7"/>
-            <rect x="140" y="65" rx="1" ry="1" width="40" height="7"/>
-            <rect x="185" y="65" rx="1" ry="1" width="15" height="7"/>
-            <rect x="205" y="65" rx="1" ry="1" width="65" height="7"/>
-
-            <rect x="0" y="78" rx="1" ry="1" width="50" height="7"/>
-            <rect x="55" y="78" rx="1" ry="1" width="20" height="7"/>
-            <rect x="80" y="78" rx="1" ry="1" width="80" height="7"/>
-            <rect x="165" y="78" rx="1" ry="1" width="25" height="7"/>
-            <rect x="195" y="78" rx="1" ry="1" width="40" height="7"/>
-            <rect x="240" y="78" rx="1" ry="1" width="30" height="7"/>
-
-            <rect x="0" y="91" rx="1" ry="1" width="15" height="7"/>
-            <rect x="20" y="91" rx="1" ry="1" width="20" height="7"/>
-            <rect x="25" y="91" rx="1" ry="1" width="45" height="7"/>
-            <rect x="75" y="91" rx="1" ry="1" width="60" height="7"/>
-            <rect x="140" y="91" rx="1" ry="1" width="40" height="7"/>
-            <rect x="185" y="91" rx="1" ry="1" width="15" height="7"/>
-            <rect x="205" y="91" rx="1" ry="1" width="65" height="7"/>
-
-          </ContentLoader>
-
-          <p v-else>
+          <p>
             {{ cvProfile.bio }}
           </p>
         </div>
@@ -113,7 +44,6 @@
 import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import {CvProfile} from '@/types/CvProfile';
-import {ContentLoader} from 'vue-content-loader';
 import {Education} from '@/types/Education';
 import EducationCard from '@/components/EducationCard.vue';
 import ContactMe from '@/components/ContactMe.vue';
