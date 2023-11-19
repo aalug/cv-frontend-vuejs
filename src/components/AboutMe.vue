@@ -112,40 +112,22 @@ onMounted(async () => {
   border-radius: 100%;
   transition: transform 1s;
   position: relative;
-  animation: movePic 4.8s linear 1,
-  spin .8s linear 3,
-  reverseSpin 2.3s ease-out 2.4s;
+  transform: translateY(0px);
+  animation: float 4s ease-in-out infinite;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes reverseSpin {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes movePic {
+@keyframes float {
   0% {
-    left: -100%;
-    animation-timing-function: linear;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.6);
+    transform: translateY(0px);
   }
   50% {
-    left: var(--pic-position);
-    animation-timing-function: ease-out;;
+    box-shadow: 0 25px 15px 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
   }
   100% {
-    left: 0;
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translateY(0px);
   }
 }
 
