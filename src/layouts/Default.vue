@@ -50,8 +50,9 @@ onMounted(() => {
   }
 
   // get date of last update from env
-  lastUpdate.value = import.meta.env.VITE_LAST_UPDATE;
-
+  lastUpdate.value = `${import.meta.env.VITE_LAST_UPDATE}`;
+  console.log(import.meta.env.VITE_LAST_UPDATE)
+  
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
 });
