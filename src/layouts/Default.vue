@@ -10,7 +10,6 @@
     <!--  footer  -->
     <div class="footer">
       © {{ currentYear }} Adam Gulczynski. All rights reserved. <br>
-      Last Updated: {{ lastUpdate }}
     </div>
 
   </v-layout>
@@ -24,7 +23,6 @@ import {useRoute} from 'vue-router';
 const route = useRoute();
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
-const lastUpdate = ref<string>('');
 const currentYear = ref<number>(2023);
 
 // Execute the code when the route path is '/' and the code has not been executed yet
@@ -48,16 +46,6 @@ onMounted(() => {
   if (route.path === '/') {
     executeCode();
   }
-
-  // get date of last update from env
-  const dateObject: Date = new Date(import.meta.env.VITE_LAST_UPDATE);
-
-// Format the date
-  const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'long', day: 'numeric'};
-  lastUpdate.value = dateObject.toLocaleDateString('en-US', options);
-
-  console.log(import.meta.env.VITE_API_BASE_URL)
-  console.log(import.meta.env.VITE_LAST_UPDATE)
 
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
