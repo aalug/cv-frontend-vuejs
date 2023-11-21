@@ -50,9 +50,14 @@ onMounted(() => {
   }
 
   // get date of last update from env
-  lastUpdate.value = `${import.meta.env.VITE_LAST_UPDATE}`;
+  const dateObject: Date = new Date(import.meta.env.VITE_LAST_UPDATE);
+
+// Format the date
+  const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'long', day: 'numeric'};
+  lastUpdate.value = dateObject.toLocaleDateString('en-US', options);
+
   console.log(import.meta.env.VITE_LAST_UPDATE)
-  
+
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
 });
