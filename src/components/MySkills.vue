@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container id="my-skills">
-      <h2 class="skills-header">My Skills</h2>
+      <h2 class="skills-header">My Skills and Expertise</h2>
       <v-row class="skills-list d-flex justify-center">
         <v-col
             v-for="(skill, index) in skills"

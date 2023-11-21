@@ -28,11 +28,8 @@
         </div>
 
         <!--  Bio    -->
-        <div class="bio">
-          <p>
-            {{ cvProfile.bio }}
-          </p>
-        </div>
+        <div class="bio" v-html="cvProfile.bio"></div>
+
       </div>
     </v-container>
 
