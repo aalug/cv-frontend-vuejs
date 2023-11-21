@@ -1,26 +1,53 @@
 <template>
 
-  <div class="welcome">
+  <div :class="{welcome: startWelcome}">
     {{ displayedText }}
   </div>
 
-  <v-layout class="layout">
+  <v-layout class="layout" :class="{appearLayout: startWelcome}">
     <router-view/>
   </v-layout>
 
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {onMounted, ref, watch} from 'vue';
+import {useRoute} from 'vue-router';
+
+const route = useRoute();
+let codeExecuted: boolean = false;
+const startWelcome = ref<boolean>(false);
+
+// Execute the code when the route path is '/' and the code has not been executed yet
+const executeCode = () => {
+  if (!codeExecuted) {
+    startWelcome.value = true;
+    wordFlick();
+    codeExecuted = true; // Set the flag to true after executing the code
+  }
+};
+
+// Watch for changes in the route
+watch(() => route.path, (newPath) => {
+  if (newPath === '/') {
+    executeCode();
+  }
+});
+
+// Use onMounted to execute the code on the initial page load
+onMounted(() => {
+  if (route.path === '/') {
+    executeCode();
+  }
+});
+
+const displayedText = ref<string>('');
 
 const words: string[] = [
   'Welcome!',
   'I\'m Adam Gulczynski',
-  'a skilled Software Developer.',
   'Explore my code journey in seconds.'
 ];
-
-const displayedText = ref<string>('');
 let i: number = 0;
 let offset: number = 0;
 const len: number = words.length;
@@ -30,8 +57,9 @@ const skipDelay: number = 15;
 const speed: number = 45;
 
 const wordFlick = (): void => {
+
   setInterval(() => {
-    if (forwards) {
+    if (forwards && i < len) {
       if (offset >= words[i].length) {
         ++skipCount;
         if (skipCount === skipDelay) {
@@ -61,8 +89,6 @@ const wordFlick = (): void => {
   }, speed);
 };
 
-wordFlick();
-
 </script>
 
 <style scoped>
@@ -74,7 +100,10 @@ wordFlick();
   margin: 0 auto;
   padding-bottom: 6rem;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
-  animation: appearFromBelow 10s forwards;
+}
+
+.appearLayout {
+  animation: appearFromBelow 6.4s forwards;
 }
 
 @keyframes appearFromBelow {
@@ -101,7 +130,7 @@ wordFlick();
   font-weight: 700;
   text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
   animation: disappearAbove 1s forwards;
-  animation-delay: 9.1s;
+  animation-delay: 5.8s;
 }
 
 @keyframes disappearAbove {
