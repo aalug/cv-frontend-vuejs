@@ -5,7 +5,14 @@
   </div>
 
   <v-layout class="layout" :class="{appearLayout: startWelcome}">
-    <router-view/>
+    <router-view class="rv"/>
+
+    <!--  footer  -->
+    <div class="footer">
+      © {{ currentYear }} Adam Gulczynski. All rights reserved. <br>
+      Last Updated: {{ lastUpdate }}
+    </div>
+
   </v-layout>
 
 </template>
@@ -17,6 +24,8 @@ import {useRoute} from 'vue-router';
 const route = useRoute();
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
+const lastUpdate = ref<string>('');
+const currentYear = ref<number>(2023);
 
 // Execute the code when the route path is '/' and the code has not been executed yet
 const executeCode = () => {
@@ -39,6 +48,12 @@ onMounted(() => {
   if (route.path === '/') {
     executeCode();
   }
+
+  // get date of last update from env
+  lastUpdate.value = import.meta.env.VITE_LAST_UPDATE;
+
+  // get current year for copyrights
+  currentYear.value = new Date().getFullYear();
 });
 
 const displayedText = ref<string>('');
@@ -98,7 +113,6 @@ const wordFlick = (): void => {
   width: 100rem;
   height: 100%;
   margin: 0 auto;
-  padding-bottom: 6rem;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -137,6 +151,21 @@ const wordFlick = (): void => {
   to {
     top: -30%;
   }
+}
+
+.rv {
+  padding-bottom: 10rem;
+}
+
+.footer {
+  width: 100rem;
+  height: 8rem;
+  background-color: var(--color-black);
+  color: #FFF;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  padding-top: 2rem;
 }
 
 </style>
