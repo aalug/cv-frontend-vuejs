@@ -12,7 +12,7 @@ jobs:
       - name: Set current date as env variable
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Echo current date
-        run: echo $NOW
+        run: echo ${{ env.NOW }}
 
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
