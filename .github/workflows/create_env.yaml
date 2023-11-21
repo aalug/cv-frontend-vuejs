@@ -12,7 +12,6 @@ jobs:
       - name: Get current time
         uses: josStorer/get-current-time@v2
         id: current-time
-        run: echo  ${{ steps.current-time.outputs.time }}
 
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
