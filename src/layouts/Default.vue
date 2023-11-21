@@ -56,6 +56,7 @@ onMounted(() => {
   const options: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'long', day: 'numeric'};
   lastUpdate.value = dateObject.toLocaleDateString('en-US', options);
 
+  console.log(import.meta.env.VITE_API_BASE_URL)
   console.log(import.meta.env.VITE_LAST_UPDATE)
 
   // get current year for copyrights
