@@ -18,7 +18,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v2.0
         with:
           envkey_VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
-          envkey_VITE_LAST_UPDATE: $NOW
+          envkey_VITE_LAST_UPDATE: ${{ env.NOW }}
           directory: .
           file_name: .env
           fail_on_empty: true
