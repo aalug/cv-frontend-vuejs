@@ -13,6 +13,9 @@ import './assets/main.css'
 // Composables
 import { createApp } from 'vue'
 
+// Pinia
+import { createPinia } from 'pinia'
+
 // Plugins
 import { registerPlugins } from '@/plugins'
 
@@ -22,7 +25,11 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 library.add(faGithub);
 
+const pinia = createPinia()
+
 const app = createApp(App)
+
+app.use(pinia)
 
 registerPlugins(app)
 
