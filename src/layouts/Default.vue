@@ -19,8 +19,12 @@
 <script setup lang="ts">
 import {onMounted, ref, watch} from 'vue';
 import {useRoute} from 'vue-router';
+import {useFetchDataStore} from '@/store/fetch_data';
 
 const route = useRoute();
+
+const fetchDataStore = useFetchDataStore()
+
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
 const currentYear = ref<number>(2023);
@@ -42,10 +46,17 @@ watch(() => route.path, (newPath) => {
 });
 
 // Use onMounted to execute the code on the initial page load
-onMounted(() => {
+onMounted(async () => {
   if (route.path === '/') {
+    // display the welcome message
     executeCode();
+
+    // fetch data using store
+    await fetchDataStore.fetchCvProfile();
   }
+
+  // scroll to the top to see the welcome message
+  window.scrollTo(0, 0);
 
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
