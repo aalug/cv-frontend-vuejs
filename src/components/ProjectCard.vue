@@ -149,10 +149,10 @@ const goToTechnologyPage = (url: string) => {
 
 .card {
   background-color: rgba(0, 0, 0, .05);
-  height: 26rem;
+  height: 28rem;
   position: relative;
   transition: all 1s ease;
-  width: 44rem;
+  width: 48rem;
   margin-bottom: 2rem;
 }
 
@@ -160,17 +160,17 @@ const goToTechnologyPage = (url: string) => {
   transform: scale(1.2);
   margin: 6rem auto;
   box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
-  width: 88rem;
+  width: 96rem;
 }
 
 .flip-card {
-  height: 26rem;
-  perspective: 100rem;
+  height: 28rem;
+  perspective: 106rem;
   position: absolute;
   right: 0;
   transition: all 1s ease;
   visibility: hidden;
-  width: 44rem;
+  width: 48rem;
   z-index: 100;
 }
 
@@ -199,8 +199,8 @@ const goToTechnologyPage = (url: string) => {
 }
 
 .card-front {
-  height: 26rem;
-  width: 44rem;
+  height: 28rem;
+  width: 48rem;
 }
 
 .card-front__top {
@@ -208,7 +208,7 @@ const goToTechnologyPage = (url: string) => {
   clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
   display: flex;
   flex-direction: column;
-  height: 24rem;
+  height: 26rem;
   justify-content: center;
   padding: .75rem;
 }
@@ -232,7 +232,7 @@ const goToTechnologyPage = (url: string) => {
   position: absolute;
   right: 0;
   transition: all 1s ease;
-  width: 44rem;
+  width: 48rem;
   z-index: 1;
 }
 
@@ -273,8 +273,8 @@ const goToTechnologyPage = (url: string) => {
 }
 
 .project-image {
-  width: 44rem;
-  height: 26rem;
+  width: 48rem;
+  height: 28rem;
 }
 
 .card-back p {
@@ -290,7 +290,9 @@ const goToTechnologyPage = (url: string) => {
 
 .technology-list {
   position: relative;
-  color: black;
+  color: #000;
+  overflow: auto;
+  max-height: 10rem;
 }
 
 .technology-list ul {
