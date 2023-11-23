@@ -284,6 +284,8 @@ const goToTechnologyPage = (url: string) => {
 .description {
   margin-top: 1.5rem;
   text-align: justify-all;
+  height: 10.5rem;
+  overflow: auto;
 }
 
 .technology-list {
