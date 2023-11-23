@@ -1,7 +1,6 @@
 <template>
 
   <div class="main-div">
-    <NavBar/>
     <AboutMe/>
     <MySkills/>
     <MyProjects/>
