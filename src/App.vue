@@ -1,5 +1,8 @@
 <template>
 
+  <!-- Navbar   -->
+  <NavBar v-if="loadNavBar"/>
+
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
@@ -7,6 +10,18 @@
   <router-view/>
 
 </template>
+
+<script setup lang="ts">
+import {ref} from 'vue';
+import NavBar from '@/components/NavBar.vue';
+
+const loadNavBar = ref<boolean>(false);
+
+setTimeout(() => {
+  loadNavBar.value = true;
+}, 6000)
+
+</script>
 
 <style scoped>
 .bg {

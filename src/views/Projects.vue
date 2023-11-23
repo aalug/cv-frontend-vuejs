@@ -1,9 +1,5 @@
 <template>
   <v-container>
-    <div class="navbar top-bottom-in">
-      <router-link :to="{name: 'home'}">Home</router-link>
-    </div>
-
 
     <h1 class="projects-skill-header">My Projects that use {{ skill }}</h1>
     <v-container
