@@ -25,7 +25,7 @@ setTimeout(() => {
 
 <style scoped>
 .bg {
-  animation: slide 3s ease-in-out infinite alternate;
+  animation: slide 14s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, #E1AA74 50%, #F3F0CA 50%);
   bottom: 0;
   left: -50%;
@@ -38,11 +38,11 @@ setTimeout(() => {
 
 .bg2 {
   animation-direction: alternate-reverse;
-  animation-duration: 4s;
+  animation-duration: 15s;
 }
 
 .bg3 {
-  animation-duration: 5s;
+  animation-duration: 16s;
 }
 
 @keyframes slide {
