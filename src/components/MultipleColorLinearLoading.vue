@@ -33,8 +33,10 @@
 
 <style scoped>
 .progress-container {
-  height: 200vh;
-  margin-top: 30%;
+  width: 30rem;
+  position: fixed;
+  top: 20rem;
+  left: calc(50% - 15rem);
 }
 
 .progress-container h2 {

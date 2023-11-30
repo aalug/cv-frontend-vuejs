@@ -1,6 +1,8 @@
 <template>
-
-  <div class="main-div">
+  <div v-if="loading">
+    <MultipleColorLinearLoading/>
+  </div>
+  <div v-else class="main-div">
     <AboutMe/>
     <MySkills/>
     <MyProjects/>
@@ -10,11 +12,18 @@
 
 <script lang="ts" setup>
 import {defineAsyncComponent} from 'vue';
-import NavBar from '@/components/NavBar.vue';
+import {storeToRefs} from "pinia";
 import AboutMe from '@/components/AboutMe.vue';
+import {useFetchDataStore} from "@/store/fetch_data";
+import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
+
 
 const MySkills = defineAsyncComponent(() => import('@/components/MySkills.vue'));
 const MyProjects = defineAsyncComponent(() => import('@/components/MyProjects.vue'));
+
+const fetchDataStore = useFetchDataStore();
+
+const {loading} = storeToRefs(fetchDataStore);
 
 </script>
 
