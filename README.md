@@ -1,52 +1,29 @@
-# default
+# Vue.js CV app
+It is a frontend for the [cv backend go app](https://github.com/aalug/cv-backend-go)
+built with Go.
+The Vue.js CV app implements all the features provided by the [cv backend go app](https://github.com/aalug/cv-backend-go).
 
-## Project setup
+### App is built with:
 
-```
-# yarn
-yarn
+- Vue 3
+    + TypeScript
+    + Composition API
+- Pinia
+- Vuetify
 
-# npm
-npm install
 
-# pnpm
-pnpm install
+## Getting started
 
-# bun
-bun install
-```
+1. Rename `.env.example` to `.env` and replace the values
+2. Run in the terminal `yarn` or `npm install`
+3. Then run: `yarn dev` or `npm run dev`
+4. Now, app should be running at http://localhost:3000/
 
-### Compiles and hot-reloads for development
-
-```
-# yarn
-yarn dev
-
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# bun
-bun run dev
-```
 
 ### Compiles and minifies for production
 
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# bun
-bun run build
-```
+- `yarn build`
+- `npm run build`
 
 ### Customize configuration
 
