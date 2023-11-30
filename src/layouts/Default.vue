@@ -4,7 +4,11 @@
     {{ displayedText }}
   </div>
 
-  <v-layout class="layout" :class="{appearLayout: startWelcome}">
+  <v-layout
+      v-if="!loading"
+      class="layout"
+      :class="{appearLayout: startWelcome}"
+  >
     <router-view class="rv"/>
 
     <!--  footer  -->
@@ -20,10 +24,12 @@
 import {onMounted, ref, watch} from 'vue';
 import {useRoute} from 'vue-router';
 import {useFetchDataStore} from '@/store/fetch_data';
+import {storeToRefs} from 'pinia';
 
 const route = useRoute();
 
 const fetchDataStore = useFetchDataStore()
+const {loading} = storeToRefs(fetchDataStore);
 
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
@@ -139,14 +145,16 @@ const wordFlick = (): void => {
 }
 
 .welcome {
+  font-family: 'Courier New', monospace;
   position: absolute;
   top: 20%;
   left: 50%;
+  opacity: .9;
   transform: translate(-50%, -50%);
   text-align: center;
   color: #FFF;
   background-color: #000;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 700;
   text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
   animation: disappearAbove 1s forwards;

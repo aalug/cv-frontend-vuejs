@@ -1,9 +1,6 @@
 <template>
-  <div v-if="loading">
-    <MultipleColorLinearLoading/>
-  </div>
 
-  <div v-else id="about">
+  <div id="about">
     <!-- profile picture -->
     <v-img
         :src="cvProfile.profilePictureUrl"
@@ -46,11 +43,10 @@ import {storeToRefs} from 'pinia';
 import {useFetchDataStore} from '@/store/fetch_data';
 import EducationCard from '@/components/EducationCard.vue';
 import ContactMe from '@/components/ContactMe.vue';
-import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
 
 const fetchDataStore = useFetchDataStore();
 
-const {cvProfile, loading} = storeToRefs(fetchDataStore);
+const {cvProfile} = storeToRefs(fetchDataStore);
 
 </script>
 
