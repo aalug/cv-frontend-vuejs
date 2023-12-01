@@ -8,7 +8,7 @@
       v-if="loading && isAnimationOver"
   />
   <v-layout
-      v-else
+      v-if="!loading"
       class="layout"
       :class="{appearLayout: startWelcome}"
   >
