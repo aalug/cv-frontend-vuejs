@@ -34,14 +34,16 @@
 <style scoped>
 .progress-container {
   width: 30rem;
+  height: 80rem;
   position: fixed;
   top: 20rem;
   left: calc(50% - 15rem);
 }
 
 .progress-container h2 {
-  color: white;
-  opacity: .5;
+  text-align: center;
+  color: #FFF;
+  opacity: .9;
 }
 
 .progress {

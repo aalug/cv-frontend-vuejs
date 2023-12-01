@@ -292,7 +292,7 @@ const goToTechnologyPage = (url: string) => {
   position: relative;
   color: #000;
   overflow: auto;
-  max-height: 10rem;
+  max-height: 8.3rem;
 }
 
 .technology-list ul {
