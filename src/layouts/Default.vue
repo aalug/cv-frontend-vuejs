@@ -4,8 +4,11 @@
     {{ displayedText }}
   </div>
 
+  <MultipleColorLinearLoading
+      v-if="loading && isAnimationOver"
+  />
   <v-layout
-      v-if="!loading"
+      v-else
       class="layout"
       :class="{appearLayout: startWelcome}"
   >
@@ -25,11 +28,14 @@ import {onMounted, ref, watch} from 'vue';
 import {useRoute} from 'vue-router';
 import {useFetchDataStore} from '@/store/fetch_data';
 import {storeToRefs} from 'pinia';
+import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
 
 const route = useRoute();
 
 const fetchDataStore = useFetchDataStore()
 const {loading} = storeToRefs(fetchDataStore);
+
+const isAnimationOver = ref<boolean>(false);
 
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
@@ -59,6 +65,13 @@ onMounted(async () => {
 
     // fetch data using store
     await fetchDataStore.fetchCvProfile();
+
+    // set timer to wait until the animation is over
+    // if it is, and the app is still fetching data (is loading)
+    // then loading component will be displayed
+    setTimeout(() => {
+      isAnimationOver.value = true;
+    }, 5800)
   }
 
   // scroll to the top to see the welcome message

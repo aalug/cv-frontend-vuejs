@@ -1,8 +1,6 @@
 <template>
-  <div v-if="loading">
-    <MultipleColorLinearLoading/>
-  </div>
-  <div v-else class="main-div">
+
+  <div class="main-div">
     <AboutMe/>
     <MySkills/>
     <MyProjects/>
