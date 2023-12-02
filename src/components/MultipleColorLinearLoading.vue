@@ -33,11 +33,12 @@
 
 <style scoped>
 .progress-container {
-  width: 30rem;
+  width: 50rem;
   height: 80rem;
   position: fixed;
   top: 20rem;
-  left: calc(50% - 15rem);
+  left: calc(50% - 25rem);
+  z-index: 9999;
 }
 
 .progress-container h2 {

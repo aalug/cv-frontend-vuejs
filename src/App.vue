@@ -3,6 +3,11 @@
   <!-- Navbar   -->
   <NavBar v-if="loadNavBar"/>
 
+  <!-- Loading  -->
+  <MultipleColorLinearLoading
+      v-if="loading && isAnimationOver"
+  />
+
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
@@ -14,10 +19,21 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import NavBar from '@/components/NavBar.vue';
+import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
+import {useFetchDataStore} from '@/store/fetch_data';
+import {storeToRefs} from "pinia";
 
 const loadNavBar = ref<boolean>(false);
+const isAnimationOver = ref<boolean>(false);
 
+const fetchDataStore = useFetchDataStore()
+const {loading} = storeToRefs(fetchDataStore);
+
+// set timer to wait until the animation is over
+// if it is, and the app is still fetching data (is loading)
+// then loading component will be displayed
 setTimeout(() => {
+  isAnimationOver.value = true;
   loadNavBar.value = true;
 }, 6000)
 
