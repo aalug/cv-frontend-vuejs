@@ -13,8 +13,13 @@ export const useFetchDataStore = defineStore('fetchData', () => {
 
     const loading = ref<boolean>(false);
     const cvProfile = ref<CvProfile>(new CvProfile());
+    const isAnimationOver = ref<boolean>(false);
 
     const fetchCvProfile = async () => {
+        setTimeout(() => {
+            isAnimationOver.value = true;
+        }, 5800);
+
         loading.value = true;
         try {
             const {data} = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/cv-profiles/1`)
@@ -55,6 +60,7 @@ export const useFetchDataStore = defineStore('fetchData', () => {
     return {
         loading,
         cvProfile,
+        isAnimationOver,
         fetchCvProfile,
     }
 });

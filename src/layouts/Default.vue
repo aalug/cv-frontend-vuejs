@@ -5,9 +5,8 @@
   </div>
 
   <v-layout
-      v-if="!loading"
-      class="layout"
-      :class="{appearLayout: startWelcome}"
+      v-if="isAnimationOver && !loading"
+      class="layout appearLayout"
   >
     <router-view class="rv"/>
 
@@ -30,7 +29,7 @@ import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.
 const route = useRoute();
 
 const fetchDataStore = useFetchDataStore()
-const {loading} = storeToRefs(fetchDataStore);
+const {loading, isAnimationOver} = storeToRefs(fetchDataStore);
 
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
@@ -57,9 +56,6 @@ onMounted(async () => {
   if (route.path === '/') {
     // display the welcome message
     executeCode();
-
-    // fetch data using store
-    await fetchDataStore.fetchCvProfile();
   }
 
   // scroll to the top to see the welcome message
@@ -130,14 +126,11 @@ const wordFlick = (): void => {
 }
 
 .appearLayout {
-  animation: appearFromBelow 6.4s forwards;
+  animation: appearFromBelow .8s forwards;
 }
 
 @keyframes appearFromBelow {
   0% {
-    transform: translateY(100%);
-  }
-  70% {
     transform: translateY(100%);
   }
   100% {
