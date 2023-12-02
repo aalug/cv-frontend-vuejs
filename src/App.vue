@@ -17,17 +17,21 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref, watch, onMounted} from 'vue';
 import NavBar from '@/components/NavBar.vue';
 import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
 import {useFetchDataStore} from '@/store/fetch_data';
-import {storeToRefs} from "pinia";
+import {storeToRefs} from 'pinia';
 
 const loadNavBar = ref<boolean>(false);
-const isAnimationOver = ref<boolean>(false);
 
 const fetchDataStore = useFetchDataStore()
-const {loading} = storeToRefs(fetchDataStore);
+const {loading, isAnimationOver} = storeToRefs(fetchDataStore);
+
+onMounted(async () => {
+  // fetch data using store
+  await fetchDataStore.fetchCvProfile();
+});
 
 // set timer to wait until the animation is over
 // if it is, and the app is still fetching data (is loading)
@@ -35,7 +39,8 @@ const {loading} = storeToRefs(fetchDataStore);
 setTimeout(() => {
   isAnimationOver.value = true;
   loadNavBar.value = true;
-}, 6000)
+}, 6000);
+
 
 </script>
 
