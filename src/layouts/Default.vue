@@ -6,6 +6,7 @@
 
   <v-layout
       v-if="isAnimationOver && !loading"
+      :key="refreshLayout"
       class="layout appearLayout"
   >
     <router-view class="rv"/>
@@ -33,7 +34,22 @@ const {loading, isAnimationOver} = storeToRefs(fetchDataStore);
 
 let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
+
 const currentYear = ref<number>(2023);
+
+const refreshLayout = ref<number>(0);
+
+const intervalID = setInterval(() => {
+  if (!loading.value && isAnimationOver.value) {
+    // if the data was fetched successfully and the welcome
+    // animation has ended - refresh the layout
+    refreshLayout.value++;
+  } else {
+    // clear the interval - layout was rendered
+    // and it does not require refreshing anymore
+    clearInterval(intervalID);
+  }
+}, 200);
 
 // Execute the code when the route path is '/' and the code has not been executed yet
 const executeCode = () => {
