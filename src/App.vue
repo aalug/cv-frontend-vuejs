@@ -183,7 +183,7 @@ setTimeout(() => {
 }
 
 .appearLayout {
-  animation: appearFromBelow .9s forwards;
+  animation: appearFromBelow 1.1s forwards;
 }
 
 @keyframes appearFromBelow {
