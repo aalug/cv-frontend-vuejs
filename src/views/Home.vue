@@ -10,16 +10,10 @@
 
 <script lang="ts" setup>
 import {defineAsyncComponent} from 'vue';
-import {storeToRefs} from "pinia";
 import AboutMe from '@/components/AboutMe.vue';
-import {useFetchDataStore} from "@/store/fetch_data";
 
 const MySkills = defineAsyncComponent(() => import('@/components/MySkills.vue'));
 const MyProjects = defineAsyncComponent(() => import('@/components/MyProjects.vue'));
-
-const fetchDataStore = useFetchDataStore();
-
-const {loading} = storeToRefs(fetchDataStore);
 
 </script>
 

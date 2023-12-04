@@ -17,7 +17,7 @@
   </div>
 
   <v-layout
-      v-if="isAnimationOver && !loading"
+      v-show="isAnimationOver && !loading"
       class="layout appearLayout"
   >
     <router-view class="rv"/>
@@ -73,13 +73,11 @@ onMounted(async () => {
     // scroll to the top to see the welcome message
     window.scrollTo(0, 0);
 
-    console.log('executeCode')
     // display the welcome message
     executeCode();
   }
 
   // fetch data using store
-  console.log('fetch data')
   await fetchDataStore.fetchCvProfile();
 
   // get current year for copyrights
