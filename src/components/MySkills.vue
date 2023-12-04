@@ -8,7 +8,7 @@
             :key="index"
             cols="12"
             md="4"
-            sm="6"
+            sm="12"
         >
           <SkillCard
               :skill-id="skill.id"
