@@ -33,11 +33,11 @@
 
 <script setup lang="ts">
 import {ref, watch, onMounted} from 'vue';
-import NavBar from '@/components/NavBar.vue';
 import {useFetchDataStore} from '@/store/fetch_data';
 import {storeToRefs} from 'pinia';
 import {useRoute} from 'vue-router';
 import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
+import NavBar from '@/components/NavBar.vue';
 
 const loadNavBar = ref<boolean>(false);
 
@@ -50,20 +50,6 @@ let codeExecuted: boolean = false;
 const startWelcome = ref<boolean>(false);
 
 const currentYear = ref<number>(2023);
-
-const refreshLayout = ref<number>(0);
-
-const intervalID = setInterval(() => {
-  if (!loading.value && isAnimationOver.value) {
-    // if the data was fetched successfully and the welcome
-    // animation has ended - refresh the layout
-    refreshLayout.value++;
-  } else {
-    // clear the interval - layout was rendered
-    // and it does not require refreshing anymore
-    clearInterval(intervalID);
-  }
-}, 200);
 
 // Execute the code when the route path is '/' and the code has not been executed yet
 const executeCode = () => {
@@ -111,7 +97,7 @@ const len: number = words.length;
 let forwards: boolean = true;
 let skipCount: number = 0;
 const skipDelay: number = 15;
-const speed: number = 45;
+const speed: number = 50;
 
 const wordFlick = (): void => {
 
@@ -197,7 +183,7 @@ setTimeout(() => {
 }
 
 .appearLayout {
-  animation: appearFromBelow .5s forwards;
+  animation: appearFromBelow .9s forwards;
 }
 
 @keyframes appearFromBelow {
@@ -223,7 +209,7 @@ setTimeout(() => {
   font-weight: 700;
   text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
   animation: disappearAbove 1s forwards;
-  animation-delay: 5.8s;
+  animation-delay: 6.3s;
 }
 
 @keyframes disappearAbove {
