@@ -69,16 +69,18 @@ watch(() => route.path, (newPath) => {
 
 // Use onMounted to execute the code on the initial page load
 onMounted(async () => {
-  // fetch data using store
-  await fetchDataStore.fetchCvProfile();
-
   if (route.path === '/') {
+    // scroll to the top to see the welcome message
+    window.scrollTo(0, 0);
+
+    console.log('executeCode')
     // display the welcome message
     executeCode();
   }
 
-  // scroll to the top to see the welcome message
-  window.scrollTo(0, 0);
+  // fetch data using store
+  console.log('fetch data')
+  await fetchDataStore.fetchCvProfile();
 
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
