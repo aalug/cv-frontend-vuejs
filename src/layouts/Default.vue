@@ -1,4 +1,4 @@
-<template>
+<template :key="refreshLayout">
 
   <div :class="{welcome: startWelcome}">
     {{ displayedText }}
@@ -6,7 +6,6 @@
 
   <v-layout
       v-if="isAnimationOver && !loading"
-      :key="refreshLayout"
       class="layout appearLayout"
   >
     <router-view class="rv"/>
