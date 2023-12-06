@@ -77,9 +77,6 @@ onMounted(async () => {
     executeCode();
   }
 
-  // fetch data using store
-  await fetchDataStore.fetchCvProfile();
-
   // get current year for copyrights
   currentYear.value = new Date().getFullYear();
 });
@@ -174,7 +171,7 @@ setTimeout(() => {
 }
 
 .layout {
-  background-color: var(--color-navy);
+  background-image: linear-gradient(to right, var(--color-navy-3), var(--color-navy-2), var(--color-navy));
   opacity: 0.9;
   width: 100rem;
   height: 100%;
