@@ -39,14 +39,19 @@
 </template>
 
 <script setup lang="ts">
+import {onMounted} from 'vue';
 import {storeToRefs} from 'pinia';
 import {useFetchDataStore} from '@/store/fetch_data';
 import EducationCard from '@/components/EducationCard.vue';
 import ContactMe from '@/components/ContactMe.vue';
 
 const fetchDataStore = useFetchDataStore();
-
 const {cvProfile} = storeToRefs(fetchDataStore);
+
+onMounted(async () => {
+  // fetch data using store
+  await fetchDataStore.fetchCvProfile();
+});
 
 </script>
 
