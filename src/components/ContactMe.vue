@@ -1,9 +1,9 @@
 <template>
   <div class="contact-info">
     <span>Contact Information</span>
-    <p><strong>Address:</strong> {{ address }}</p>
-    <p><strong>Phone:</strong> {{ phoneNumber }}</p>
-    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Address:</strong><br> {{ address }}</p>
+    <p><strong>Phone:</strong><br> {{ phoneNumber }}</p>
+    <p><strong>Email:</strong><br> {{ email }}</p>
 
     <a class="github-link"
        :href="gitHubUrl"
@@ -41,7 +41,11 @@ defineProps<{
   font-size: 1.5rem;
   color: var(--color-black);
   padding: .5rem 1rem;
-  line-height: 220%;
+  line-height: 150%;
+}
+
+.contact-info p {
+  margin-top: 1rem;
 }
 
 .github-link {
@@ -55,6 +59,7 @@ defineProps<{
   background: #000;
   padding: .5rem;
   transition: .3s ease;
+  margin-top: 2rem;
 }
 
 .github-link div:hover {
@@ -66,6 +71,7 @@ defineProps<{
 .contact-info span {
   font-size: 1.9rem;
   font-weight: bold;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px #000;
+  letter-spacing: 1px;
 }
 </style>
