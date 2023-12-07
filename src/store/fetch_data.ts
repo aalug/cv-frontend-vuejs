@@ -18,7 +18,7 @@ export const useFetchDataStore = defineStore('fetchData', () => {
     const fetchCvProfile = async () => {
         setTimeout(() => {
             isAnimationOver.value = true;
-        }, 5800);
+        }, 6200);
 
         loading.value = true;
         try {

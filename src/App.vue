@@ -1,16 +1,17 @@
 <template>
 
+  <!-- Background  -->
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+
   <!-- Navbar   -->
-  <NavBar v-if="loadNavBar"/>
+  <NavBar v-if="isAnimationOver"/>
 
   <!-- Loading  -->
   <MultipleColorLinearLoading
       v-if="loading && isAnimationOver"
   />
-
-  <div class="bg"></div>
-  <div class="bg bg2"></div>
-  <div class="bg bg3"></div>
 
   <div :class="{welcome: startWelcome}">
     {{ displayedText }}
@@ -38,8 +39,6 @@ import {storeToRefs} from 'pinia';
 import {useRoute} from 'vue-router';
 import MultipleColorLinearLoading from '@/components/MultipleColorLinearLoading.vue';
 import NavBar from '@/components/NavBar.vue';
-
-const loadNavBar = ref<boolean>(false);
 
 const route = useRoute();
 
@@ -128,14 +127,6 @@ const wordFlick = (): void => {
     }
   }, speed);
 };
-
-// set timer to wait until the animation is over
-// if it is, and the app is still fetching data (is loading)
-// then loading component will be displayed
-setTimeout(() => {
-  isAnimationOver.value = true;
-  loadNavBar.value = true;
-}, 6000);
 
 </script>
 
